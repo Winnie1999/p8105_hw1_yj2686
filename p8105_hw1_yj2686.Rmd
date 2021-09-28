@@ -17,7 +17,6 @@ a random sample of size 10 from a standard Normal distribution
 a logical vector indicating whether elements of the sample are greater than 0
 a character vector of length 10
 a factor vector of length 10, with 3 different factor “levels”
-Try to take the mean of each variable in your data frame. What works and what doesn’t?
 
 ```{r data_frame}
 df = 
@@ -27,15 +26,31 @@ df =
     vec_char = c("a","b","c","d","e","f","g","h","i","j"),
     vec_factor = factor(c("abc","abc","abc","def","def","def","ghi","ghi","ghi","ghi"))
 )
-vec_factor = factor(c("abc","abc","abc","def","def","def","ghi","ghi","ghi","ghi"))
 ```
 
-## Including Plots
+Try to take the mean of each variable in your data frame. What works and what doesn’t?
 
-You can also embed plots, for example:
+ANSWER:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+When taking the mean of each variable in data frame, random sample and logical vector worked.
+character vector and factor vector did not work and return "Warning in mean.default(df$vec_factor): argument is not numeric or logical: returning NA"
+
+```{r mean_of_variables}
+mean(pull(df,random_sample))
+mean(pull(df,vec_logical))
+mean(pull(df,vec_char))
+mean(pull(df,vec_factor))
 ```
+In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+
+ANSWER:
+
+```{r convert_variables, eval=FALSE}
+as.numeric(pull(df,vec_logical))
+as.numeric(pull(df,vec_char))
+as.numeric(pull(df,vec_factor))
+```
+
+When applying as.numeric function, logical vector can converted to 0 and 1; character vector cannot convert to numeric vectors; factor vectors can converted to the number of levels
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
