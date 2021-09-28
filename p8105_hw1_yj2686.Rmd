@@ -51,6 +51,28 @@ as.numeric(pull(df,vec_char))
 as.numeric(pull(df,vec_factor))
 ```
 
-When applying as.numeric function, logical vector can converted to 0 and 1; character vector cannot convert to numeric vectors; factor vectors can converted to the number of levels
+When applying as.numeric function, logical vector can converted to 0 and 1; character vector cannot convert to numeric vectors; factor vectors can converted to the number of levels.
+
+##Problem 2
+
+Load penguins datasets
+
+```{r load penguins}
+data("penguins", package = "palmerpenguins")
+```
+
+Write a short description of the penguins dataset (not the penguins_raw dataset) using inline R code, including:
+
+the data in this dataset, including names / values of important variables
+the size of the dataset (using nrow and ncol)
+the mean flipper length
+
+ANSWER:
+
+The penguins dataset contains `r names(penguins)`
+The first variable is `r class(pull(penguins, species))`
+The size of the dataset: There are `r nrow(penguins)` rows and `r ncol(penguins)` columns
+The mean of flipper length is `r mean(pull(penguins,flipper_length_mm),na.rm = TRUE)`
+```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
